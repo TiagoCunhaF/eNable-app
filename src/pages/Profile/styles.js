@@ -37,22 +37,6 @@ export const Container = styled.div`
       background: rgba(255, 255, 255, 0.2);
       margin: 10px 0 20px;
     }
-
-    button {
-      margin: 5px 0 0;
-      height: 44px;
-      background: #3b9eff;
-      font-weight: bold;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${darken(0.03, '#3b9eff')};
-      }
-    }
   }
 
   > button {

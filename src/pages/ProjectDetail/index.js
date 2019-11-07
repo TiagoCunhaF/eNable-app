@@ -5,14 +5,6 @@ import api from '~/services/api';
 
 import { Container, Projeto } from './styles';
 
-Number.prototype.format = function(n, x) {
-  const re = `\\d(?=(\\d{${x || 3}})+${n > 0 ? '\\.' : '$'})`;
-  return `R$ ${this.toFixed(Math.max(0, ~~n)).replace(
-    new RegExp(re, 'g'),
-    '$&,'
-  )}`;
-};
-
 export default function Dashboard() {
   const [project, setProject] = useState('');
   useEffect(() => {

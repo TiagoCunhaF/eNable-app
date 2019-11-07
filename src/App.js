@@ -5,6 +5,7 @@ import { Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import './config/ReactotronConfig';
+import './Util.js';
 
 import Routes from './routes';
 import history from './services/history';

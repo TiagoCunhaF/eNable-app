@@ -68,7 +68,10 @@ export const Profile = styled.div`
   }
 
   button {
-    color: #999;
-    border: none;
+    color: #999 !important;
+    border: none !important;
+    background: none !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
   }
 `;

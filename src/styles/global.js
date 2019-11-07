@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darken } from 'polished';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -33,6 +34,10 @@ export default createGlobalStyle`
     font: 14px 'Roboto', sans-serif;
   }
 
+  input {
+    width: 100%;
+  }
+
   a {
     text-decoration: none;
   }
@@ -44,4 +49,38 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  button[type='submit'] {
+      margin: 5px 0 0;
+      height: 44px;
+      background: #3b9eff;
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#3b9eff')};
+      }
+    }
+  
+  button .cancel {
+    width: 100%;
+    margin: 10px 0 0;
+    height: 44px;
+    background: #f64c75;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.08, '#f64c75')};
+    }
+  }
+
 `;
