@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import history from '../../services/history';
 
@@ -7,20 +7,32 @@ import api from '~/services/api';
 import { Container, Projeto } from './styles';
 
 export default function Dashboard() {
-  const [projetos, setProjetos] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [projectsFiltered, setProjectsFiltered] = useState([]);
 
   function projectDetail(id) {
     history.push(`/projectDetail/${id}`);
   }
   useEffect(() => {
-    async function loadProjetos() {
-      const response = await api.get('dashboards');
+    async function loadProjects() {
+      const response = await api.get('dashboard');
 
-      setProjetos(response.data);
+      setProjects(response.data);
+      setProjectsFiltered(response.data);
     }
 
-    loadProjetos();
+    loadProjects();
   }, []);
+
+  async function handleFilter(event) {
+    const updatedList = projects.filter(
+      item =>
+        item.project.name
+          .toLowerCase()
+          .search(event.target.value.toLowerCase()) !== -1
+    );
+    setProjectsFiltered(updatedList);
+  }
 
   return (
     <Container>
@@ -28,9 +40,15 @@ export default function Dashboard() {
         <strong>Projetos</strong>
         <Link to="/project">Novo Projeto</Link>
       </header>
-
+      <form>
+        <input
+          name="search"
+          placeholder="Filtrar projetos"
+          onChange={handleFilter}
+        />
+      </form>
       <ul>
-        {projetos.map(({ project, revenue, expenses, balance }) => (
+        {projectsFiltered.map(({ project, revenue, expenses, balance }) => (
           <Projeto
             key={project.id}
             closed={project.closed}

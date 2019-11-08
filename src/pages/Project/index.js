@@ -21,6 +21,16 @@ const schema = Yup.object().shape({
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
+  const [estimatedCust, setEstimatedCust] = useState(0);
+  const [averageCust, setAverageCust] = useState(0);
+
+  useEffect(() => {
+    async function getAverageCust() {
+      const response = await api.get('averageCust');
+      setAverageCust(response.data.averageCust);
+    }
+    getAverageCust();
+  }, []);
 
   useEffect(() => {
     async function getUsers() {
@@ -47,6 +57,8 @@ export default function Dashboard() {
     owner: '',
     dateStart: new Date(),
     status: 'Iniciado',
+    goal: '',
+    estimatedCust: 0,
   };
 
   async function handleSubmit(data) {
@@ -79,8 +91,18 @@ export default function Dashboard() {
           placeholder="status"
           options={statusList}
         />
-        <DatePicker name="dateStart" id="dateStart" placeholderText="Data Inicio" />
-
+        <DatePicker
+          name="dateStart"
+          id="dateStart"
+          placeholderText="Data Inicio"
+        />
+        <Input name="goalRevenue" placeholder="Objetivo de arrecadação" />
+        <Input
+          name="goalDonation"
+          placeholder="Objetivo de doações - Qtd de próteses"
+          onChange={event => setEstimatedCust(event.target.value * averageCust)}
+        />
+        <Input name="estimatedCust" value={estimatedCust} placeholder="Custo estimato do projeto" readOnly />
         <button type="submit">Criar Projeto</button>
       </Form>
     </Container>
