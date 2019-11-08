@@ -46,28 +46,36 @@ export default function ReactSelect({
   const CustomStyle = {
     input: style => ({
       ...style,
-      margin: 0,
-      height: 22,
+      height: 44,
+      color: '#fff',
+      margin: '0 0 0 8px',
+      padding: 0,
     }),
     placeholder: style => ({
       ...style,
-      color: 'rgba(255, 255, 255, 0.7)',
-      marginTop: 8,
-      marginLeft: 8,
+      color: 'rgba(255, 255, 255, 0.4)',
+      margin: '0 0 0 8px',
     }),
     singleValue: style => ({
       ...style,
       color: '#fff',
-      marginTop: 8,
-      marginLeft: 8,
+      margin: '0 0 0 8px',
     }),
     menu: style => ({
       ...style,
       marginTop: -5,
     }),
     option: style => ({ ...style }),
-    indicatorSeparator: style => ({}),
-    indicatorConteiner: style => ({}),
+    indicatorSeparator: style => ({
+      ...style,
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    }),
+    dropdownIndicator: style => ({
+      ...style,
+      '&:hover': {
+        color: 'rgba(255, 255, 255, 0.5)',
+      },
+    }),
     control: style => ({
       ...style,
       backgroundColor: 'rgba(0, 0, 0, 0.1)',
